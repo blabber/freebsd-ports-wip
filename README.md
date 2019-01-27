@@ -6,4 +6,5 @@ commited yet.
 ## Ports
 
 * audio/ogg2mp3: [Bug 234428](https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=234428)
+* sysutils/password-store: [Bug 235255](https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=235255)
 
