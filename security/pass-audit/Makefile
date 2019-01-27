@@ -6,7 +6,7 @@ CATEGORIES=	security
 MASTER_SITES=	https://github.com/roddhjav/${PORTNAME}/releases/download/v${PORTVERSION}/
 
 MAINTAINER=	tobias.rehbein@web.de
-COMMENT=	Extension to audit your pass password repository
+COMMENT=	Extension to audit your password-store password repository
 
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
