@@ -21,8 +21,10 @@ RUN_DEPENDS=	p5-CDDB_get>=0:audio/p5-CDDB_get \
 	cdparanoia:audio/cdparanoia
 
 USES=		perl5 shebangfix tar:bzip2
-NO_BUILD=	yes
 USE_PERL5=	run
+
+NO_BUILD=	yes
+NO_ARCH=	yes
 SHEBANG_FILES=	ripit.pl
 
 OPTIONS_DEFINE=	EXAMPLES
