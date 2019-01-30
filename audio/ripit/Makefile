@@ -5,7 +5,7 @@ PORTNAME=	ripit
 PORTVERSION=	3.9.0
 PORTREVISION?=	2
 CATEGORIES=	audio
-MASTER_SITES=	https://github.com/blabber/${PORTNAME}/releases/download/v${PORTVERSION}
+MASTER_SITES=	https://github.com/blabber/${PORTNAME}/releases/download/v${PORTVERSION}/
 
 MAINTAINER=	tobias.rehbein@web.de
 COMMENT=	Command line audio CD ripper
