@@ -20,8 +20,8 @@ NO_ARCH=	yes
 NO_BUILD=	yes
 
 SHEBANG_FILES=	${WRKSRC}/lib/audit.py
-PLIST_FILES=	${LOCALBASE}/lib/password-store/extensions/audit.bash \
-		libexec/pass-audit.py \
+PLIST_FILES=	${LOCALBASE}/libexec/password-store/extensions/audit.bash \
+		libexec/password-store/pass-audit/audit.py \
 		man/man1/pass-audit.1.gz
 
 post-patch:
@@ -29,10 +29,14 @@ post-patch:
 	@${REINPLACE_CMD} -e 's:%%PREFIX%%:${PREFIX}:g' ${WRKSRC}/audit.bash
 
 do-install:
-	${INSTALL_MAN} ${WRKSRC}/pass-audit.1 ${STAGEDIR}${MANPREFIX}/man/man1/pass-audit.1
-	${INSTALL_SCRIPT} ${WRKSRC}/lib/audit.py ${STAGEDIR}${PREFIX}/libexec/pass-audit.py
+	${INSTALL_MAN} ${WRKSRC}/pass-audit.1 \
+		${STAGEDIR}${MANPREFIX}/man/man1/pass-audit.1
+	${MKDIR} ${STAGEDIR}${LOCALBASE}/libexec/password-store/extensions
+	${INSTALL_SCRIPT} ${WRKSRC}/audit.bash \
+		${STAGEDIR}${LOCALBASE}/libexec/password-store/extensions/audit.bash
+	${MKDIR} ${STAGEDIR}${PREFIX}/libexec/password-store/pass-audit
+	${INSTALL_SCRIPT} ${WRKSRC}/lib/audit.py \
+		${STAGEDIR}${PREFIX}/libexec/password-store/pass-audit/audit.py
 
-	${MKDIR} ${STAGEDIR}${PREFIX}/lib/password-store/extensions
-	${INSTALL_SCRIPT} ${WRKSRC}/audit.bash ${STAGEDIR}${LOCALBASE}/lib/password-store/extensions/audit.bash
 
 .include <bsd.port.mk>
