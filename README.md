@@ -7,5 +7,6 @@ commited yet.
 
 * audio/ogg2mp3: [Bug 234428](https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=234428)
 * audio/ripit: [Bug 235334](https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=235334)
+* security/pass-audit: not submitted yet
 * security/py-zxcvbn: [Bug 235328](https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=235328)
 
