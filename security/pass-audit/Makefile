@@ -22,9 +22,6 @@ NO_ARCH=	yes
 NO_BUILD=	yes
 
 SHEBANG_FILES=	${WRKSRC}/pass_audit.py
-#PLIST_FILES=	${LOCALBASE}/libexec/password-store/extensions/audit.bash \
-#		libexec/password-store/pass-audit/audit.py \
-#		man/man1/pass-audit.1.gz
 
 post-install:
 	${INSTALL_MAN} ${WRKSRC}/pass-audit.1 \
