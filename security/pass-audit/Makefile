@@ -33,7 +33,7 @@ post-install:
 		${STAGEDIR}${LOCALBASE}/libexec/password-store/extensions/audit.bash
 	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/bash_completion.d
 	${INSTALL_DATA} ${WRKSRC}/completion/pass-audit.bash \
-		${STAGEDIR}${PREFIX}/etc/bash_completion.d/password-store
+		${STAGEDIR}${PREFIX}/etc/bash_completion.d/pass-audit
 	@${MKDIR} ${STAGEDIR}${PREFIX}/share/zsh/site-functions
 	${INSTALL_DATA} ${WRKSRC}/completion/pass-audit.zsh \
 		${STAGEDIR}${PREFIX}/share/zsh/site-functions/_pass-audit
