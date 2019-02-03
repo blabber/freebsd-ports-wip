@@ -26,7 +26,7 @@ NO_BUILD=	yes
 
 SHEBANG_FILES=	${WRKSRC}/pass_audit.py
 
-post-install:
+pre-install:
 	${INSTALL_MAN} ${WRKSRC}/pass-audit.1 \
 		${STAGEDIR}${MANPREFIX}/man/man1/pass-audit.1
 	@${MKDIR} ${STAGEDIR}${LOCALBASE}/libexec/password-store/extensions
