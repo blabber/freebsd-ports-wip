@@ -4,6 +4,7 @@ PORTNAME=	pass-audit
 PORTVERSION=	1.0.1
 CATEGORIES=	security
 MASTER_SITES=	https://github.com/roddhjav/${PORTNAME}/releases/download/v${PORTVERSION}/
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	tobias.rehbein@web.de
 COMMENT=	Extension to audit your password-store password repository
@@ -19,8 +20,6 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}requests>0:www/py-requests@${PY_FLAVOR} \
 
 USES=		python:3.4+ shebangfix
 USE_PYTHON=	distutils
-
-PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 NO_ARCH=	yes
 NO_BUILD=	yes
