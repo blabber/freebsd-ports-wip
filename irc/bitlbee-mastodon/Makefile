@@ -11,6 +11,7 @@ LICENSE=	GPLv2
 LICSENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	bitlbee>=3.5:irc/bitlbee
+RUN_DEPENDS=	bitlbee>=3.5:irc/bitlbee
 
 USES=		gnome
 USE_GNOME=	glib20
