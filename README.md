@@ -6,5 +6,5 @@ commited yet.
 ## Ports
 
 * audio/ogg2mp3: [Bug 234428](https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=234428)
-* net-im/gajim: not submitted yet
+* net-im/gajim: [Bug 235838](https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=235838)
 

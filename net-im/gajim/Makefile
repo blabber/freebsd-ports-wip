@@ -16,7 +16,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cssutils>=1.0.2:www/py-cssutils@${PY_FLAVOR}
 		${PYTHON_PKGNAMEPREFIX}keyring>0:security/py-keyring@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}nbxmpp>=0.6.9:net-im/py-nbxmpp@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}precis_i18n>=1.0.0:textproc/py-precis_i18n@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}openssl>=0.12:security/py-openssl@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}openssl>=0.12:security/py-openssl@${PY_FLAVOR}
 
 # These are implicit dependencies, not listed in setup.py
 RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}sqlite3>=0:databases/py-sqlite3@${PY_FLAVOR} \
