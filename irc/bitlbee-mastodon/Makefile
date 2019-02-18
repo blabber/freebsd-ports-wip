@@ -25,6 +25,8 @@ CONFIGURE_ARGS=	--with-plugindir=${PREFIX}/lib/bitlbee
 PLIST_FILES=	lib/bitlbee/mastodon.so \
 		share/bitlbee/mastodon-help.txt
 
+INSTALL_TARGET=	install-strip
+
 pre-configure:
 	cd ${WRKSRC} && ./autogen.sh
 
