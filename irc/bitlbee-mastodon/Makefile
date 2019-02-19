@@ -27,6 +27,9 @@ PLIST_FILES=	lib/bitlbee/mastodon.so \
 
 INSTALL_TARGET=	install-strip
 
+do-patch:
+	${REINPLACE_CMD} -e 's/1\.4\.0/1\.4\.1/' ${WRKSRC}/configure.ac
+
 pre-configure:
 	cd ${WRKSRC} && ./autogen.sh
 
