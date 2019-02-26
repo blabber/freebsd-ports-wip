@@ -6,5 +6,5 @@ commited yet.
 ## Ports
 
 * audio/ogg2mp3: [Bug 234428](https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=234428)
-* irc/bitlbee-mastodon: not submitted yet
+* irc/bitlbee-mastodon: [Bug 236066](https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=236066)
 
