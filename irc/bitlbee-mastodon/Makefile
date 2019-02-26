@@ -2,7 +2,7 @@
 
 PORTNAME=	bitlbee-mastodon
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.4.1
+DISTVERSION=	1.4.2
 CATEGORIES=	irc
 
 MAINTAINER=	tobias.rehbein@web.de
@@ -26,9 +26,6 @@ PLIST_FILES=	lib/bitlbee/mastodon.so \
 		share/bitlbee/mastodon-help.txt
 
 INSTALL_TARGET=	install-strip
-
-do-patch:
-	${REINPLACE_CMD} -e 's/1\.4\.0/1\.4\.1/' ${WRKSRC}/configure.ac
 
 pre-configure:
 	cd ${WRKSRC} && ./autogen.sh
