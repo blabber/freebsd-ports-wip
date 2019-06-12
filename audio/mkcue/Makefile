@@ -20,5 +20,6 @@ PLIST_FILES=	bin/mkcue
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/mkcue ${STAGEDIR}${PREFIX}/bin
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/mkcue
 
 .include <bsd.port.mk>
