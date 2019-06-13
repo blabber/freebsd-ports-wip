@@ -9,7 +9,7 @@ DISTNAME=	${PORTNAME}_${PORTVERSION}.orig
 MAINTAINER=	tobias.rehbein@web.de
 COMMENT=	Generates CUE sheets from a CD TOC (Table Of Contents)
 
-LICENSE=	GPLv2+
+LICENSE=	LGPL21
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}.orig
