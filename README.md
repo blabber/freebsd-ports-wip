@@ -5,4 +5,4 @@ commited yet.
 
 ## Ports
 
-* audio/mkcue: not yet submitted
+* audio/mkcue: Submitted as [PR 239406](https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=239406)
