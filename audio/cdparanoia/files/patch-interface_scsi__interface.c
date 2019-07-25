@@ -80,8 +80,8 @@
 +static int handle_scsi_cmd(cdrom_drive *d,
 +			   unsigned char *cmd,
 +			   unsigned int cmd_len,
-+			   unsigned int out_size,
 +			   unsigned int in_size,
++			   unsigned int out_size,
 +			   unsigned char bytefill,
 +			   int bytecheck,
 +			   unsigned char *sense){
@@ -92,15 +92,15 @@
 +
 +	memcpy(d->ccb->csio.cdb_io.cdb_bytes, cmd, cmd_len);
 +
-+	if (bytecheck && out_size == 0)
-+		memset(d->private->sg_buffer, bytefill, in_size);
++	if (bytecheck && in_size == 0)
++		memset(d->private->sg_buffer, bytefill, out_size);
 +
 +	cam_fill_csio(&d->ccb->csio,
 +	    /* retries */ 0,
 +	    /* cbfcnp */ NULL,
-+	    /* flags */ CAM_DEV_QFRZDIS | (out_size ? CAM_DIR_OUT : CAM_DIR_IN),
++	    /* flags */ CAM_DEV_QFRZDIS | (in_size ? CAM_DIR_OUT : CAM_DIR_IN),
 +	    /* tag_action */ MSG_SIMPLE_Q_TAG,
-+	    /* data_ptr */ out_size ? cmd + cmd_len : d->private->sg_buffer,
++	    /* data_ptr */ in_size ? cmd + cmd_len : d->private->sg_buffer,
 +	    /* dxfer_len */ out_size ? out_size : in_size,
 +	    /* sense_len */ SSD_FULL_SIZE,
 +	    /* cdb_len */ cmd_len,
@@ -122,7 +122,7 @@
 +		return TR_UNKNOWN;
 +	}
 +
-+	if (d->ccb->csio.dxfer_len != in_size) {
++	if (d->ccb->csio.dxfer_len != out_size) {
 +		errno = EIO;
 +		return TR_EREAD;
 +	}
