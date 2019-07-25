@@ -72,7 +72,7 @@
  static int handle_scsi_cmd(cdrom_drive *d,
  			   unsigned char *cmd,
  			   unsigned int cmd_len, 
-@@ -433,6 +447,106 @@ static int handle_scsi_cmd(cdrom_drive *d,
+@@ -433,6 +447,120 @@ static int handle_scsi_cmd(cdrom_drive *d,
  
  }
  
@@ -166,6 +166,20 @@
 +		break;
 +	}
 +
++	if(bytecheck && out_size){
++		long i,flag=0;
++		for(i=in_size;i<out_size;i++)
++			if(d->private->sg_buffer[i]!=bytefill){
++				flag=1;
++				break;
++			}
++
++		if(!flag){
++			errno=EINVAL;
++			return(TR_ILLEGAL);
++		}
++	}
++
 +	if(tret1<0 || tret2<0){
 +		d->private->last_milliseconds=-1;
 +	}else{
@@ -179,7 +193,7 @@
  static int test_unit_ready(cdrom_drive *d){
    unsigned char sense[SG_MAX_SENSE];
    unsigned char key, ASC, ASCQ;
-@@ -453,6 +567,7 @@ static int test_unit_ready(cdrom_drive *d){
+@@ -453,6 +581,7 @@ static int test_unit_ready(cdrom_drive *d){
    return 1;
  }
  
@@ -187,7 +201,7 @@
  static void reset_scsi(cdrom_drive *d){
    int arg,tries=0;
    d->enable_cdda(d,0);
-@@ -472,6 +587,29 @@ static void reset_scsi(cdrom_drive *d){
+@@ -472,6 +601,29 @@ static void reset_scsi(cdrom_drive *d){
    d->enable_cdda(d,1);
  }
  
@@ -217,7 +231,7 @@
  static int mode_sense_atapi(cdrom_drive *d,int size,int page){ 
    unsigned char sense[SG_MAX_SENSE];
    unsigned char cmd[10]= {0x5A,   /* MODE_SENSE */
-@@ -1074,29 +1212,35 @@ static long scsi_read_map (cdrom_drive *d, void *p, lo
+@@ -1074,29 +1226,35 @@ static long scsi_read_map (cdrom_drive *d, void *p, lo
  
      if((err=map(d,(p?buffer:NULL),begin,sectors,sense))){
        if(d->report_all){
@@ -262,7 +276,7 @@
        }
        
        switch(errno){
-@@ -1587,6 +1731,7 @@ static void check_cache(cdrom_drive *d){
+@@ -1587,6 +1745,7 @@ static void check_cache(cdrom_drive *d){
    }
  }
  
@@ -270,7 +284,7 @@
  static int check_atapi(cdrom_drive *d){
    int atapiret=-1;
    int fd = d->cdda_fd; /* check the device we'll actually be using to read */
-@@ -1618,6 +1763,53 @@ static int check_atapi(cdrom_drive *d){
+@@ -1618,6 +1777,53 @@ static int check_atapi(cdrom_drive *d){
    }
  }  
  
@@ -324,7 +338,7 @@
  static int check_mmc(cdrom_drive *d){
    unsigned char *b;
    cdmessage(d,"\nChecking for MMC style command set...\n");
-@@ -1664,6 +1856,7 @@ static void check_exceptions(cdrom_drive *d,exception 
+@@ -1664,6 +1870,7 @@ static void check_exceptions(cdrom_drive *d,exception 
    }
  }
  
@@ -332,7 +346,7 @@
  /* request vendor brand and model */
  unsigned char *scsi_inquiry(cdrom_drive *d){
    unsigned char sense[SG_MAX_SENSE];
-@@ -1675,6 +1868,7 @@ unsigned char *scsi_inquiry(cdrom_drive *d){
+@@ -1675,6 +1882,7 @@ unsigned char *scsi_inquiry(cdrom_drive *d){
    }
    return (d->private->sg_buffer);
  }
