@@ -14,9 +14,10 @@ COMMENT=	CDDA extraction tool (also known as ripper)
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING-GPL
 
-GNU_CONFIGURE=	yes
 USES=		gmake
 USE_LDCONFIG=	yes
+
+GNU_CONFIGURE=	yes
 
 post-patch:
 	@${REINPLACE_CMD} -e 's/\(^ *default:\)/\1break;/' \
