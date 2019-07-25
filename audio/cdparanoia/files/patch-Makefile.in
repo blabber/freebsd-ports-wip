@@ -1,4 +1,4 @@
---- Makefile.in.orig	2008-09-11 20:33:30 UTC
+--- Makefile.in.orig	2019-07-25 21:55:03 UTC
 +++ Makefile.in
 @@ -8,7 +8,7 @@ VPATH=@srcdir@
  srcdir=@srcdir@
@@ -7,7 +7,7 @@
 -FLAGS=@TYPESIZES@ @CFLAGS@
 +FLAGS=@TYPESIZES@ @CPPFLAGS@ @CFLAGS@ -I./interface
  OPT=@OPT@ $(FLAGS)
- DEBUG=@DEBUG@ $(FLAGS)
+ DEBUG=@DEBUG@
  CC=@CC@
 @@ -32,7 +32,7 @@ export VERSION
  

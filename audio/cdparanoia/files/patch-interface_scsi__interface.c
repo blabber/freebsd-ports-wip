@@ -1,4 +1,4 @@
---- interface/scsi_interface.c.orig	2008-09-11 20:33:30 UTC
+--- interface/scsi_interface.c.orig	2019-07-25 21:55:03 UTC
 +++ interface/scsi_interface.c
 @@ -3,6 +3,8 @@
   * Original interface.c Copyright (C) 1994-1997 
@@ -93,14 +93,14 @@
 +	memcpy(d->ccb->csio.cdb_io.cdb_bytes, cmd, cmd_len);
 +
 +	if (bytecheck && in_size == 0)
-+		memset(d->private->sg_buffer, bytefill, out_size);
++		memset(d->private_data->sg_buffer, bytefill, out_size);
 +
 +	cam_fill_csio(&d->ccb->csio,
 +	    /* retries */ 0,
 +	    /* cbfcnp */ NULL,
 +	    /* flags */ CAM_DEV_QFRZDIS | (in_size ? CAM_DIR_OUT : CAM_DIR_IN),
 +	    /* tag_action */ MSG_SIMPLE_Q_TAG,
-+	    /* data_ptr */ in_size ? cmd + cmd_len : d->private->sg_buffer,
++	    /* data_ptr */ in_size ? cmd + cmd_len : d->private_data->sg_buffer,
 +	    /* dxfer_len */ out_size ? out_size : in_size,
 +	    /* sense_len */ SSD_FULL_SIZE,
 +	    /* cdb_len */ cmd_len,
@@ -108,11 +108,11 @@
 +
 +	struct timespec tv1;
 +	struct timespec tv2;
-+	int tret1=clock_gettime(d->private->clock,&tv1);
++	int tret1=clock_gettime(d->private_data->clock,&tv1);
 +	if ((result = cam_send_ccb(d->dev, d->ccb)) < 0 ||
 +	    (d->ccb->ccb_h.status & CAM_STATUS_MASK) == 0 /* hack? */)
 +		return TR_EREAD;
-+	int tret2=clock_gettime(d->private->clock,&tv2);
++	int tret2=clock_gettime(d->private_data->clock,&tv2);
 +
 +	if ((d->ccb->ccb_h.status & CAM_STATUS_MASK) != CAM_REQ_CMP &&
 +	    (d->ccb->ccb_h.status & CAM_STATUS_MASK) != CAM_SCSI_STATUS_ERROR) {
@@ -169,7 +169,7 @@
 +	if(bytecheck && out_size){
 +		long i,flag=0;
 +		for(i=in_size;i<out_size;i++)
-+			if(d->private->sg_buffer[i]!=bytefill){
++			if(d->private_data->sg_buffer[i]!=bytefill){
 +				flag=1;
 +				break;
 +			}
@@ -181,9 +181,9 @@
 +	}
 +
 +	if(tret1<0 || tret2<0){
-+		d->private->last_milliseconds=-1;
++		d->private_data->last_milliseconds=-1;
 +	}else{
-+		d->private->last_milliseconds = (tv2.tv_sec-tv1.tv_sec)*1000. + (tv2.tv_nsec-tv1.tv_nsec)/1000000.;
++		d->private_data->last_milliseconds = (tv2.tv_sec-tv1.tv_sec)*1000. + (tv2.tv_nsec-tv1.tv_nsec)/1000000.;
 +	}
 +
 +	return 0;
@@ -276,7 +276,7 @@
        }
        
        switch(errno){
-@@ -1587,6 +1745,7 @@ static void check_cache(cdrom_drive *d){
+@@ -1583,6 +1741,7 @@ static void check_cache(cdrom_drive *d){
    }
  }
  
@@ -284,7 +284,7 @@
  static int check_atapi(cdrom_drive *d){
    int atapiret=-1;
    int fd = d->cdda_fd; /* check the device we'll actually be using to read */
-@@ -1618,6 +1777,53 @@ static int check_atapi(cdrom_drive *d){
+@@ -1614,6 +1773,53 @@ static int check_atapi(cdrom_drive *d){
    }
  }  
  
@@ -338,7 +338,7 @@
  static int check_mmc(cdrom_drive *d){
    unsigned char *b;
    cdmessage(d,"\nChecking for MMC style command set...\n");
-@@ -1664,6 +1870,7 @@ static void check_exceptions(cdrom_drive *d,exception 
+@@ -1660,6 +1866,7 @@ static void check_exceptions(cdrom_drive *d,exception 
    }
  }
  
@@ -346,9 +346,9 @@
  /* request vendor brand and model */
  unsigned char *scsi_inquiry(cdrom_drive *d){
    unsigned char sense[SG_MAX_SENSE];
-@@ -1675,6 +1882,7 @@ unsigned char *scsi_inquiry(cdrom_drive *d){
+@@ -1671,6 +1878,7 @@ unsigned char *scsi_inquiry(cdrom_drive *d){
    }
-   return (d->private->sg_buffer);
+   return (d->private_data->sg_buffer);
  }
 +#endif
  

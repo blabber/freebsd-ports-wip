@@ -17,6 +17,10 @@ LICENSE_FILE=	${WRKSRC}/COPYING-GPL
 USES=		gmake
 USE_LDCONFIG=	yes
 
+EXTRA_PATCHES=	${PATCHDIR}/extra-patch-upstream-patch-r15314 \
+		${PATCHDIR}/extra-patch-upstream-patch-r15337 \
+		${PATCHDIR}/extra-patch-upstream-patch-r15338
+
 GNU_CONFIGURE=	yes
 
 post-patch:

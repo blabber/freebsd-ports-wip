@@ -15,18 +15,18 @@
 +    if(d->dev)cam_close_device(d->dev);
 +    if(d->ioctl_fd != -1)close(d->ioctl_fd);
 +#endif
-     if(d->private){
-       if(d->private->sg_hd)free(d->private->sg_hd);
-       free(d->private);
+     if(d->private_data){
+       if(d->private_data->sg_hd)free(d->private_data->sg_hd);
+       free(d->private_data);
 @@ -127,7 +134,13 @@ long cdda_read_timed(cdrom_drive *d, void *buffer, lon
  	}
        }	
      }
 +#ifdef Linux
-     if(ms)*ms=d->private->last_milliseconds;
+     if(ms)*ms=d->private_data->last_milliseconds;
 +#elif defined(__FreeBSD__)
 +    if(ms) {
-+      *ms = (d->private == NULL) ? 0 : d->private->last_milliseconds;
++      *ms = (d->private_data == NULL) ? 0 : d->private_data->last_milliseconds;
 +    }
 +#endif
      return(sectors);

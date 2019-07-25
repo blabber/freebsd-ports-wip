@@ -228,8 +228,8 @@
 +	d->lun = d->dev->target_lun;
 +	d->interface = GENERIC_SCSI;
 +
-+	d->private=calloc(1,sizeof(*d->private));
-+	if ((d->private->sg_buffer=(unsigned char *)(d->private->sg_hd=malloc(MAX_BIG_BUFF_SIZE))) == NULL) {
++	d->private_data=calloc(1,sizeof(*d->private_data));
++	if ((d->private_data->sg_buffer=(unsigned char *)(d->private_data->sg_hd=malloc(MAX_BIG_BUFF_SIZE))) == NULL) {
 +		idperror(messagedest, messages, "Could not allocate buffer memory", NULL);
 +		goto cdda_identify_scsi_fail;
 +	}
