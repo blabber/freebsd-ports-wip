@@ -66,10 +66,19 @@ retrieving revision 1.5
    if (d->ioctl_fd != -1) {
      int result;
  
-@@ -235,6 +251,7 @@ int FixupTOC(cdrom_drive *d,int tracks){
+@@ -235,6 +251,16 @@ int FixupTOC(cdrom_drive *d,int tracks){
        return 1;
      }
    }
++#elif defined(__FreeBSD__)
++    for (j = tracks-1; j >= 0; j--) {
++      if (j > 0 && !IS_AUDIO(d,j) && IS_AUDIO(d,j-1)) {
++        if ((d->disc_toc[j].dwStartSector > d->disc_toc[j].dwStartSector - 11400) &&
++            (d->disc_toc[j].dwStartSector - 11400 > d->disc_toc[j-1].dwStartSector))
++          d->disc_toc[j].dwStartSector = d->disc_toc[j].dwStartSector - 11400;
++        break;
++      }
++    }
 +#endif
    return 0;
  }
