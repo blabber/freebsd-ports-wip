@@ -5,5 +5,5 @@ commited yet.
 
 ## Ports
 
-* audio/cdparanoia: Update to III-10.2, not submitted yet
+* audio/cdparanoia: Update to III-10.2, submitted as [PR 200925](https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=200925)
 * audio/mkcue: Submitted as [PR 239406](https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=239406)
