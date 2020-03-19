@@ -1,4 +1,4 @@
-pidgin-rocketchar is libpurple plugin which adds support for Rocket.Char
-to the users who use pidgin
+purple-rocketchat adds support for Rocket.Chat to libpurple clients, such as
+Pidgin.
 
 WWW: https://bitbucket.org/EionRobb/purple-rocketchat
