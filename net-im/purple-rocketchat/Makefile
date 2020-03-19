@@ -1,10 +1,10 @@
 # $FreeBSD: head/net-im/pidgin-rocketchat/Makefile 517063 2019-11-08 13:34:26Z tobik $
 
 PORTNAME=	purple-rocketchat
-PORTVERSION=	0.0.20171004
+PORTVERSION=	0.0.20190416
 CATEGORIES=	net-im
 MASTER_SITES=	https://bitbucket.org/EionRobb/purple-rocketchat/get/
-DISTNAME=	fb8dcc649782
+DISTNAME=	826990b48f41
 
 MAINTAINER=	mizhka@gmail.com
 COMMENT=	Rocket.Chat Plugin for libpurple
