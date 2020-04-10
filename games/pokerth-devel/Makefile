@@ -1,11 +1,11 @@
 # Created by: Yinghong.Liu <relaxbsd@gmail.com>
-# $FreeBSD: head/games/pokerth/Makefile 487350 2018-12-13 06:59:34Z tobik $
+# $FreeBSD$
 
 PORTNAME=	pokerth-devel
 PORTVERSION=	g20200322
 CATEGORIES=	games
 
-MAINTAINER=	madpilot@FreeBSD.org
+MAINTAINER=	tobias.rehbein@web.de
 COMMENT=	Poker game written in C++/Qt
 
 LICENSE=	AGPLv3+
@@ -15,21 +15,24 @@ LIB_DEPENDS=	libboost_thread.so:devel/boost-libs \
 		libmikmod.so:audio/libmikmod \
 		libgnutls.so:security/gnutls \
 		libcurl.so:ftp/curl \
-		libgsasl.so:security/gsasl \
+		libgsasl.so:security/libgsasl \
 		libtinyxml.so:textproc/tinyxml \
-		libprotobuf.so:devel/protobuf
-BUILD_DEPENDS=	${LOCALBASE}/include/libircclient.h:irc/libircclient \
-		${LOCALBASE}/include/websocketpp/client.hpp:devel/websocketpp \
+		libprotobuf.so:devel/protobuf \
+		libircclient.so:irc/libircclient
+BUILD_DEPENDS=	${LOCALBASE}/include/websocketpp/client.hpp:devel/websocketpp \
 		protoc:devel/protobuf
 
-USES=		compiler:c++11-lang iconv gmake qmake qt:5 sqlite sdl ssl
+USES=		compiler:c++11-lang gl gmake iconv qmake qt:5 sdl sqlite ssl
+USE_GL=		gl
 USE_CXXSTD=	c++11
-USE_QT=		buildtools core gui network sql sql-sqlite3 widgets
+USE_QT=		buildtools_build core gui network sql sql-sqlite3 widgets
 USE_SDL=	mixer
 USE_GITHUB=	yes
 GH_ACCOUNT=	pokerth
 GH_PROJECT=	pokerth
 GH_TAGNAME=	9b36c9863c3b0f6cd4807aa545d4fa4572fc32cd
+
+CONFLICTS=	pokerth
 
 QMAKE_SOURCE_PATH=	pokerth.pro
 QMAKE_ARGS+=	CONFIG+="client"
