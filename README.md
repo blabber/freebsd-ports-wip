@@ -7,3 +7,4 @@ commited yet.
 
 * audio/cdparanoia: Update to III-10.2, submitted as [PR 200925](https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=200925)
 * games/pokerth-devel: Port of the pokerth stable branch. Will not be submitted, use games/pokerth instead
+* irc/bitlbee-mastodon: Update to 1.4.4, submitted as [PR 244928](https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=244928)
