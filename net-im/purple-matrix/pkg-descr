@@ -1,0 +1,8 @@
+purple-matrix is a plugin for libpurple which adds the ability to communicate
+with matrix.org homeservers to any libpurple-based clients (such as Pidgin).
+
+This project is somewhat alpha, and only basic functionality has been
+implemented. Sending and receiving simple text messages is supported, as is
+joining rooms you are invited to by other users.
+
+WWW: https://github.com/matrix-org/purple-matrix
