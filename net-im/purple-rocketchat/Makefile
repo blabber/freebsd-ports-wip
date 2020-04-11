@@ -1,4 +1,4 @@
-# $FreeBSD: head/net-im/pidgin-rocketchat/Makefile 517063 2019-11-08 13:34:26Z tobik $
+# $FreeBSD$
 
 PORTNAME=	purple-rocketchat
 PORTVERSION=	0.0.20190416
