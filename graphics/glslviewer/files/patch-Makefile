@@ -1,0 +1,27 @@
+--- Makefile.orig	2021-03-26 21:00:36 UTC
++++ Makefile
+@@ -1,6 +1,6 @@
+ EXE = ./bin/glslViewer
+ 
+-CXX = g++
++CXX ?= g++
+ SOURCES := 	$(wildcard include/*/*.cc) $(wildcard src/*.cpp) $(wildcard src/*/*.cpp) \
+ 			$(wildcard include/oscpack/osc/*.cpp) $(wildcard include/oscpack/ip/posix/*.cpp)
+ HEADERS := 	$(wildcard include/*/*.h) $(wildcard src/*.h) $(wildcard src/*.h) $(wildcard src/*/*.h) \
+@@ -32,7 +32,6 @@ endif
+ $(info ${PLATFORM} platform with $(DRIVER) drivers)
+ 
+ INCLUDES +=	-Isrc/ -Iinclude/
+-CFLAGS += -Wall -O3 -std=c++11 -fpermissive
+ 
+ ifeq ($(DRIVER),vc)
+ 	CFLAGS += -DGLM_FORCE_CXX14 -DPLATFORM_RPI -DDRIVER_VC -Wno-psabi
+@@ -65,7 +64,7 @@ else ifeq ($(PLATFORM),RPI4)
+ CFLAGS += -DPLATFORM_RPI4 -DDRIVER_GLFW -Wno-psabi $(shell pkg-config --cflags glfw3 glu gl)
+ LDFLAGS += $(shell pkg-config --libs glfw3 glu gl x11 xrandr xi xxf86vm xcursor xinerama xrender xext xdamage) -lpthread -ldl
+ 
+-else ifeq ($(PLATFORM),Linux)
++else ifeq ($(PLATFORM),$(filter $(PLATFORM),Linux FreeBSD))
+ CFLAGS += -DPLATFORM_LINUX -DDRIVER_GLFW $(shell pkg-config --cflags glfw3 glu gl)
+ LDFLAGS += $(shell pkg-config --libs glfw3 glu gl x11 xrandr xi xxf86vm xcursor xinerama xrender xext xdamage) -lpthread -ldl
+ 
